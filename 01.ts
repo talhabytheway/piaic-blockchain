@@ -1,30 +1,9 @@
 // convert number to word
 // PIAIC77870
 
-let units : string[] = [
-  "",
-  "one",
-  "two",
-  "three",
-  "four",
-  "five",
-  "six",
-  "seven",
-  "eight",
-  "nine",
-];
-let tens : string[] = [
-  "",
-  "ten",
-  "twenty",
-  "thirty",
-  "forty",
-  "fifty",
-  "sixty",
-  "seventy",
-  "eighty",
-  "ninety",
-];
+let units : readonly string[] = [ "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", ];
+let tens : readonly string[] = [ "", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety", ];
+let teens : readonly string[] = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
 
 let numString : string = "7860000293";
 
@@ -42,7 +21,12 @@ let resultArr : string[]
 
 let unitF = (e) => units[e];
 
-let tensF = (e) => tens[e[0]] + " " + units[e[1]];
+let tensF = (e) => {
+  if (e[0] == 1)
+    return teens[e[1]]
+  else 
+    return tens[e[0]] + " " + units[e[1]];
+}
 
 let hundredF = (e) => {
   let x = e.shift();
